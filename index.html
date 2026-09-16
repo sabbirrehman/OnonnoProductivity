@@ -3,37 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OnonnoProductivity</title>
+  
+  <!-- SEO Optimization for Google Search -->
+  <title>OnonnoProductivity - Minimalist Productivity & To-Do Tracker App</title>
+  <meta name="description" content="OnonnoProductivity is a free, fast, and minimalist productivity application built for Web, Windows, and Android to manage daily tasks effortlessly.">
+  <meta name="keywords" content="OnonnoProductivity, Ononno, Productivity, Task Tracker, To Do App, PWA, Minimalist Planner">
+  <meta name="author" content="OnonnoProductivity">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Social Sharing Metadata -->
+  <meta property="og:title" content="OnonnoProductivity - Minimalist Productivity App">
+  <meta property="og:description" content="Boost your daily productivity with OnonnoProductivity. Simple, fast, and cross-platform task tracking.">
+  <meta property="og:type" content="website">
+
+  <!-- PWA Setup -->
   <link rel="manifest" href="manifest.json">
+
   <style>
     * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: #0d1117; color: #c9d1d9; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-    .app-container { width: 100%; max-width: 450px; background: #161b22; padding: 25px; border-radius: 12px; border: 1px solid #30363d; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
-    h1 { margin-top: 0; color: #58a6ff; text-align: center; font-size: 1.6rem; }
-    p.subtitle { text-align: center; color: #8b949e; font-size: 0.9rem; margin-bottom: 20px; }
+    .app-container { width: 100%; max-width: 480px; background: #161b22; padding: 25px; border-radius: 12px; border: 1px solid #30363d; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+    h1 { margin-top: 0; color: #58a6ff; text-align: center; font-size: 1.8rem; }
+    p.subtitle { text-align: center; color: #8b949e; font-size: 0.95rem; margin-bottom: 20px; }
     .input-group { display: flex; gap: 8px; margin-bottom: 20px; }
-    input[type="text"] { flex: 1; padding: 12px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #fff; outline: none; }
+    input[type="text"] { flex: 1; padding: 12px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #fff; outline: none; font-size: 1rem; }
     input[type="text"]:focus { border-color: #58a6ff; }
-    button.add-btn { background: #238636; color: #fff; border: none; padding: 12px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    button.add-btn { background: #238636; color: #fff; border: none; padding: 12px 18px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; }
     button.add-btn:hover { background: #2ea043; }
     ul { list-style: none; padding: 0; margin: 0; }
     li { background: #21262d; border: 1px solid #30363d; padding: 12px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
     li.completed { text-decoration: line-through; opacity: 0.5; }
-    .delete-btn { background: #da3633; color: white; border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer; }
+    .delete-btn { background: #da3633; color: white; border: none; border-radius: 4px; padding: 6px 10px; cursor: pointer; font-size: 0.85rem; }
+    .about-section { margin-top: 25px; border-top: 1px solid #30363d; padding-top: 15px; text-align: center; font-size: 0.85rem; color: #8b949e; }
   </style>
 </head>
 <body>
 
   <div class="app-container">
-    <h1>OnonnoProductivity</h1>
-    <p class="subtitle">Minimalist Task Tracker for Web, PC & Android</p>
+    <header>
+      <h1>OnonnoProductivity</h1>
+      <p class="subtitle">Minimalist Cross-Platform Productivity & Task Manager</p>
+    </header>
 
-    <div class="input-group">
-      <input type="text" id="taskInput" placeholder="Add a new task...">
-      <button class="add-btn" onclick="addTask()">Add</button>
-    </div>
+    <main>
+      <div class="input-group">
+        <input type="text" id="taskInput" placeholder="Add a new task...">
+        <button class="add-btn" onclick="addTask()">Add Task</button>
+      </div>
 
-    <ul id="taskList"></ul>
+      <ul id="taskList"></ul>
+    </main>
+
+    <footer class="about-section">
+      <p><strong>OnonnoProductivity</strong> helps you simplify your daily workflow across Web, Android, and Windows.</p>
+    </footer>
   </div>
 
   <script>
@@ -72,6 +95,10 @@
 
     function saveTasks(tasks) {
       localStorage.setItem("ononno_tasks", JSON.stringify(tasks));
+    }
+
+    function loadTasks() {
+      renderTasks();
     }
 
     function renderTasks() {
